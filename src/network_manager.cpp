@@ -27,8 +27,7 @@ std::shared_ptr<ip::tcp::socket> network_manager::accept_client()
 {
     // do this only if init as a server
     std::shared_ptr<ip::tcp::socket> sckt(new ip::tcp::socket(service));
-    ip::tcp::acceptor acc = ip::tcp::acceptor(service, ep);
-    acc.accept(*sckt);
+    ip::tcp::acceptor(service, ep).accept(*sckt);
 
     return sckt;
 }
