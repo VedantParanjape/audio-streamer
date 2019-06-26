@@ -22,6 +22,7 @@ void file_transfer(const char* filename, std::shared_ptr<boost::asio::ip::tcp::s
     bufferstream << filename << "\n";
     bufferstream << filesize(filename) << "\n";
     bufferstream << picosha2::hash256_hex_string(file_content(filename));
+    bufferstream << "\n\n";
 
     std::size_t headerbytes = boost::asio::write(*sock, buffer);
     std::size_t databytes = boost::asio::write(*sock, boost::asio::buffer(file_content(filename)));
