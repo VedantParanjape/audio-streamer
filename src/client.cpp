@@ -45,14 +45,15 @@ int main()
               << "data bytes: " << databytes << "\n"
               << "hash: " << picosha2::hash256_hex_string(str) << "\n";
      
-    bufheader.consume(databytes);
+    //bufheader.consume(databytes);
     
-    char command[10];
-    sc->read_some(buffer(command, 4));
-    std::string cmnd = command;
+    //char command[10];
+    //sc->read_some(buffer(command, 4));
+    //std::string cmnd = command;
     
-    if(hash == picosha2::hash256_hex_string(str) && cmnd == "play")
+    if(hash == picosha2::hash256_hex_string(str))
     {
+        std::cout << "playing audio....\n";
         system("python play_audio.py");
     }
 }
