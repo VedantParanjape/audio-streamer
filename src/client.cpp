@@ -12,7 +12,7 @@ int main()
     std::string filename, filesize, hash;
     std::shared_ptr<ip::tcp::socket> sc = nm.client_init("127.0.0.1", 9292);
     
-    std::size_t headerbytes = read_until(*sc, bufheader, "\n\n");
+    std::size_t headerbytes = boost::asio::read_until(*sc, bufheader, "\n\n");
     std::istream bufstream(&bufheader);
 
     bufstream >> filename;
@@ -44,5 +44,15 @@ int main()
               << "header bytes: " << headerbytes << "\n"
               << "data bytes: " << databytes << "\n"
               << "hash: " << picosha2::hash256_hex_string(str) << "\n";
-
+     
+    bufheader.consume(databytes);
+    
+    char command[10];
+    sc->read_some(buffer(command, 4));
+    std::string cmnd = command;
+    
+    if(hash == picosha2::hash256_hex_string(str) && cmnd == "play")
+    {
+        system("python play_audio.py");
+    }
 }

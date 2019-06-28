@@ -11,6 +11,29 @@ void client_manager::manage()
     for(;;)
     {
         std::shared_ptr<boost::asio::ip::tcp::socket> sck = nm.accept_client();
+        socketsV.push_back(sck);
         hndlr.start_handle(file_transfer, "florida.mp3", sck);
+    }
+}
+
+void client_manager::send_command()
+{
+    char command[5];
+	std::cin.ignore();
+	 
+    while(1)
+	{
+		if(getchar())
+		{
+			std::cin.getline(command,5);
+		}
+		
+		if(!strcmp(command,"play"))
+		{
+			for(int i=0; i<socketsV.size(); i++)
+            {
+               socketsV[i]->write_some(buffer("play"));
+            }
+		}
     }
 }
