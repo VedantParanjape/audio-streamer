@@ -1,14 +1,14 @@
 # audio-streamer
 a sync audio player
 
-##dependencies
+## dependencies
 
 `boost-1.65(tested only on this version)`
 `pyglet`
 `libavbin`
 `picoSHA2`
 
-##compile instructions
+## compile instructions
 
 `cd src`
 
@@ -16,7 +16,7 @@ a sync audio player
 
 `g++ -o client client.cpp network_manager.cpp -lboost_system`
 
-##usage
+## usage
 
 `./test_server`
 `./client`
