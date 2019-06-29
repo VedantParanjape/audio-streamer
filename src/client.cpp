@@ -5,12 +5,17 @@
 #include <string>
 #include "boost/lexical_cast.hpp"
 #include "../third-party/PicoSHA2/picosha2.h"
-int main()
+int main(int argc, char **argv)
 {
+    if(argc < 2)
+    {
+       std::cout << "usage: ./client [server IP] [server PORT]\n";
+       std::_Exit(EXIT_FAILURE);
+    }
     network_manager nm;
     boost::asio::streambuf bufheader;
     std::string filename, filesize, hash;
-    std::shared_ptr<ip::tcp::socket> sc = nm.client_init("127.0.0.1", 9292);
+    std::shared_ptr<ip::tcp::socket> sc = nm.client_init(argv[0], boost::lexical_cast<int>(argv[1]));
     
     std::size_t headerbytes = boost::asio::read_until(*sc, bufheader, "\n\n");
     std::istream bufstream(&bufheader);
