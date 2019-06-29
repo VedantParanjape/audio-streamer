@@ -24,12 +24,11 @@ void client_manager::send_command()
 	 
     while(1)
 	{
-        std::cout << "1\n";
+        
 		 if(getchar())
 		{
-            std::cout << "2\n";
+            
 			std::cin.getline(command,5);
-            std::cerr << command << "\n";
         }
 		
 		if(getchar())
