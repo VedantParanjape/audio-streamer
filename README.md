@@ -3,22 +3,25 @@ a sync audio player
 
 ## dependencies
 
-`boost-1.65(tested only on this version)`
+`boost-1.65(tested only on version 1.65)`
 `pyglet`
 `libavbin`
 `picoSHA2`
 
 ## compile instructions
 
-`cd src`
+`cd build`
 
-`g++ -o server test_server.cpp test_filetransfer.cpp utils.cpp network_manager.cpp client_handler.cpp thread_handler.cpp -lboost_system -lboost_thread -lpthread`
+`cmake ..`
 
-`g++ -o client client.cpp network_manager.cpp -lboost_system`
+`make`
 
+the program binaries are generated in /build
 ## usage
 
-`./test_server`
+`./server [filename]`
+
+enter a mp3 file to be played
 
 `./client [server IP] [server PORT]`
 
