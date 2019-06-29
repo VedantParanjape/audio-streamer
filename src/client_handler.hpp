@@ -13,6 +13,6 @@ class client_manager{
 
     public:
       client_manager();
-      void manage();  
+      void manage(char filenm[]);  
       void send_command();
 };

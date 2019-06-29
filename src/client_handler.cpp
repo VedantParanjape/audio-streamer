@@ -6,13 +6,13 @@ client_manager::client_manager()
     std::cout << "server initialised at 127.0.0.1:9292 \n";
 }
 
-void client_manager::manage()
+void client_manager::manage(char filenm[])
 {
     for(;;)
     {
         std::shared_ptr<boost::asio::ip::tcp::socket> sck = nm.accept_client();
         socketsV.push_back(sck);
-        hndlr.start_handle(file_transfer, "florida.mp3", sck);
+        hndlr.start_handle(file_transfer, filenm, sck);
     }
 }
 
