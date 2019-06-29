@@ -19,6 +19,8 @@ a sync audio player
 ## usage
 
 `./test_server`
-`./client`
 
+`./client [server IP] [server PORT]`
+
+for local configuration IP: 127.0.0.1 PORT: 9292
 type "play" and press enter twice in the server console to start playing audio on all clients once all of them are connected and file is transferred
