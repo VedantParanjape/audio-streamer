@@ -60,6 +60,6 @@ int main(int argc, char **argv)
     if(hash == picosha2::hash256_hex_string(str) && headerbytes > 0)
     {
         std::cout << "playing audio....\n";
-        system("python play_audio.py");
+        system("python ../src/play_audio.py");
     }
 }
