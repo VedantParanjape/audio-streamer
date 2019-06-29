@@ -15,7 +15,7 @@ int main(int argc, char **argv)
     network_manager nm;
     boost::asio::streambuf bufheader;
     std::string filename, filesize, hash;
-    std::shared_ptr<ip::tcp::socket> sc = nm.client_init(argv[0], boost::lexical_cast<int>(argv[1]));
+    std::shared_ptr<ip::tcp::socket> sc = nm.client_init(argv[1], boost::lexical_cast<int>(argv[2]));
     
     std::size_t headerbytes = boost::asio::read_until(*sc, bufheader, "\n\n");
     std::istream bufstream(&bufheader);
