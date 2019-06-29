@@ -3,18 +3,16 @@ a sync audio player
 
 ## dependencies
 
-`boost-1.65(tested only on version 1.65)`
-`pyglet`
-`libavbin`
-`picoSHA2`
+`boost-1.65(tested only on version 1.65)`  
+`pyglet`  
+`libavbin`  
+`picoSHA2`  
 
 ## compile instructions
 
-`cd build`
-
-`cmake ..`
-
-`make`
+`cd build`  
+`cmake ..`  
+`make`  
 
 the program binaries are generated in /build
 ## usage
