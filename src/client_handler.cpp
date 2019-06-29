@@ -8,9 +8,6 @@ client_manager::client_manager()
 
 void client_manager::manage()
 {
-   // th = boost::thread(&client_manager::send_command, this);
-   // th.detach();
-
     for(;;)
     {
         std::shared_ptr<boost::asio::ip::tcp::socket> sck = nm.accept_client();
@@ -19,7 +16,7 @@ void client_manager::manage()
     }
 }
 
-/* 
+
 void client_manager::send_command()
 {
     char command[5];
@@ -40,10 +37,9 @@ void client_manager::send_command()
             std::cout << "play command givem !!";
 			for(int i=0; i<socketsV.size(); i++)
             {
-               socketsV[i]->write_some(buffer("play"));
+               socketsV[i]->write_some(buffer("play\n\n"));
             }
             break;
 		}
     }
 }
-*/

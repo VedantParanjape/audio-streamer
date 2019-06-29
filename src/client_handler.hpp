@@ -10,10 +10,9 @@ class client_manager{
       network_manager nm;
       thread_handler hndlr;
       std::vector<std::shared_ptr<boost::asio::ip::tcp::socket>> socketsV;
-      //boost::thread th;
 
     public:
       client_manager();
       void manage();  
-      //void send_command();
+      void send_command();
 };
