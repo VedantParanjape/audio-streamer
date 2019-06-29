@@ -56,6 +56,17 @@ CMAKE_BINARY_DIR = /home/vedant/Programming/projects/audio-streamer/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -66,17 +77,6 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/cmake-gui -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -123,6 +123,46 @@ server/fast:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
 .PHONY : server/fast
 
+#=============================================================================
+# Target rules for targets named client
+
+# Build rule for target.
+client: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 client
+.PHONY : client
+
+# fast build rule for target.
+client/fast:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/build
+.PHONY : client/fast
+
+src/client.o: src/client.cpp.o
+
+.PHONY : src/client.o
+
+# target to build an object file
+src/client.cpp.o:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client.cpp.o
+.PHONY : src/client.cpp.o
+
+src/client.i: src/client.cpp.i
+
+.PHONY : src/client.i
+
+# target to preprocess a source file
+src/client.cpp.i:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client.cpp.i
+.PHONY : src/client.cpp.i
+
+src/client.s: src/client.cpp.s
+
+.PHONY : src/client.s
+
+# target to generate assembly for a file
+src/client.cpp.s:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client.cpp.s
+.PHONY : src/client.cpp.s
+
 src/client_handler.o: src/client_handler.cpp.o
 
 .PHONY : src/client_handler.o
@@ -157,6 +197,7 @@ src/network_manager.o: src/network_manager.cpp.o
 # target to build an object file
 src/network_manager.cpp.o:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/network_manager.cpp.o
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/network_manager.cpp.o
 .PHONY : src/network_manager.cpp.o
 
 src/network_manager.i: src/network_manager.cpp.i
@@ -166,6 +207,7 @@ src/network_manager.i: src/network_manager.cpp.i
 # target to preprocess a source file
 src/network_manager.cpp.i:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/network_manager.cpp.i
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/network_manager.cpp.i
 .PHONY : src/network_manager.cpp.i
 
 src/network_manager.s: src/network_manager.cpp.s
@@ -175,6 +217,7 @@ src/network_manager.s: src/network_manager.cpp.s
 # target to generate assembly for a file
 src/network_manager.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/network_manager.cpp.s
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/network_manager.cpp.s
 .PHONY : src/network_manager.cpp.s
 
 src/test_filetransfer.o: src/test_filetransfer.cpp.o
@@ -264,9 +307,13 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... server"
-	@echo "... edit_cache"
+	@echo "... client"
+	@echo "... src/client.o"
+	@echo "... src/client.i"
+	@echo "... src/client.s"
 	@echo "... src/client_handler.o"
 	@echo "... src/client_handler.i"
 	@echo "... src/client_handler.s"

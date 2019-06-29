@@ -12,5 +12,6 @@ INCLUDE_DIRECTORIES( ${Boost_INCLUDE_DIR} )
 
 
 add_executable(server src/utils.cpp src/network_manager.cpp src/thread_handler.cpp src/test_filetransfer.cpp src/client_handler.cpp)
-
+add_executable(client src/client.cpp src/network_manager.cpp)
 TARGET_LINK_LIBRARIES( server ${Boost_LIBRARIES} )
+TARGET_LINK_LIBRARIES( client ${Boost_LIBRARIES} )

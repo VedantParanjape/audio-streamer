@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/client.dir/src/client.cpp.o CMakeFiles/client.dir/src/network_manager.cpp.o  -o client -Wl,-rpath,/usr/local/lib /usr/local/lib/libboost_system.so /usr/local/lib/libboost_thread.so /usr/local/lib/libboost_chrono.so /usr/local/lib/libboost_date_time.so /usr/local/lib/libboost_atomic.so -lpthread 
